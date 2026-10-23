@@ -1,0 +1,169 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>作品集重设计预览 · 四个数据项目</title>
+<meta name="description" content="四个数据分析作品集项目的重设计预览页导航。">
+<style>
+.gx{--bg:#f4f1ea;--ink:#1b1a18;--ink2:#55514a;--mute:#8b867c;--rule:#d9d3c6;
+  margin:0;background:var(--bg);color:var(--ink);font:16px/1.7 "Segoe UI","PingFang SC","Hiragino Sans GB","Microsoft YaHei",system-ui,sans-serif}
+.gx *{box-sizing:border-box}
+.gx a{color:inherit}
+.gx :focus-visible{outline:3px solid #c47f00;outline-offset:3px}
+.gx-top{display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px 20px;align-items:center;padding:12px clamp(18px,5vw,72px);border-bottom:1px solid var(--rule);font-size:13px;color:var(--ink2)}
+.gx-ver{font:600 11px/1 ui-monospace,Consolas,monospace;letter-spacing:.1em;border:1px solid var(--ink);padding:5px 8px;color:var(--ink)}
+.gx-wrap{max-width:1180px;margin:0 auto;padding:0 clamp(18px,5vw,72px)}
+.gx-head{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);gap:24px 64px;padding:64px 0 44px;align-items:end;border-bottom:2px solid var(--ink)}
+.gx h1{font-family:"Songti SC","STSong","SimSun","Noto Serif CJK SC",Georgia,serif;font-weight:400;font-size:clamp(2.2rem,5.5vw,4rem);line-height:1.12;margin:0;letter-spacing:.01em}
+.gx-head p{margin:0 0 10px;color:var(--ink2);font-size:15px}
+.gx-list{list-style:none;margin:0;padding:0;counter-reset:p}
+.gx-item{display:grid;grid-template-columns:4.5rem minmax(0,1fr) minmax(0,17rem);gap:16px 40px;padding:40px 0;border-bottom:1px solid var(--rule);align-items:start;counter-increment:p}
+.gx-no{font:300 3rem/1 Georgia,"Times New Roman",serif;color:var(--mute)}
+.gx-no::before{content:"0" counter(p)}
+.gx-item h2{margin:0;font-size:clamp(1.35rem,2.6vw,1.8rem);line-height:1.25;font-weight:650;letter-spacing:-.005em}
+.gx-item h2 a{text-decoration:none;background-image:linear-gradient(currentColor,currentColor);background-size:0 2px;background-repeat:no-repeat;background-position:0 100%;transition:background-size .35s ease}
+.gx-item h2 a:hover,.gx-item h2 a:focus-visible{background-size:100% 2px}
+.gx-item .zh{display:block;font-size:14px;font-weight:400;color:var(--ink2);margin-top:4px}
+.gx-item p{margin:12px 0 0;color:var(--ink2);max-width:40rem}
+.gx-meta{display:grid;grid-template-columns:5.5rem 1fr;gap:4px 12px;margin:16px 0 0;font-size:13.5px}
+.gx-meta dt{color:var(--mute)}
+.gx-meta dd{margin:0}
+.gx-act{display:flex;flex-wrap:wrap;gap:10px 18px;margin-top:18px;font-size:14px}
+.gx-act a.go{display:inline-block;padding:8px 16px;background:var(--ink);color:#fff;text-decoration:none;transition:transform .25s ease}
+.gx-act a.go:hover{transform:translateX(4px)}
+.gx-act a.src{align-self:center;color:var(--ink2)}
+/* specimens: each shows the target page's actual palette and type pairing */
+.gx-spec{border:1px solid var(--rule);min-height:11rem;padding:16px;position:relative;overflow:hidden;font-size:12px;line-height:1.4}
+.gx-spec .sw{display:flex;gap:0;height:10px;margin-top:12px}
+.gx-spec .sw i{flex:1}
+.gx-spec .lbl{position:absolute;right:10px;bottom:8px;font:10px/1 ui-monospace,Consolas,monospace;letter-spacing:.08em;opacity:.7}
+.sp-sec{background:#f5f2e9;color:#14213d;font-family:ui-monospace,Consolas,monospace}
+.sp-sec .t{font-weight:700;letter-spacing:.14em;font-size:12px;border-bottom:2px solid #14213d;padding-bottom:6px}
+.sp-sec .r{display:grid;grid-template-columns:2.6rem 1fr 1.6rem;gap:2px 8px;margin-top:8px;font-size:11px}
+.sp-sec .r b{color:#c47f00}
+.sp-dk{background:#fbf8f2;color:#181413;font-family:"Iowan Old Style","Palatino Linotype",Georgia,serif}
+.sp-dk .t{font-size:1.6rem;line-height:1.05}
+.sp-dk .t i{color:#b3261e}
+.sp-dk .k{font:600 10px/1 "Segoe UI",sans-serif;letter-spacing:.16em;color:#b3261e;margin-bottom:8px}
+.sp-sp{background-color:#fbfcff;color:#0c1233;background-image:linear-gradient(rgba(29,63,214,.09) 1px,transparent 1px),linear-gradient(90deg,rgba(29,63,214,.09) 1px,transparent 1px);background-size:14px 14px}
+.sp-sp .t{font-weight:750;font-size:1.15rem;line-height:1.15}
+.sp-sp .t em{font-style:normal;background:linear-gradient(transparent 60%,#c8f03c 60%)}
+.sp-sp .b{display:inline-block;margin-top:8px;font:700 10px/1 ui-monospace,Consolas,monospace;background:#c8f03c;color:#3d5200;padding:4px 6px;letter-spacing:.08em}
+.sp-at{background:#f7efe3;color:#2d1f18;font-family:"Gill Sans","Gill Sans MT","Trebuchet MS",sans-serif}
+.sp-at .t{font-size:1.35rem;line-height:1.15}
+.sp-at .t span{color:#b4502b}
+.sp-at .q{display:inline-block;margin-top:8px;padding:5px 10px;border-radius:999px;background:#2d1f18;color:#f7efe3;font-size:11px}
+.gx-notes{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px 40px;padding:40px 0 64px;font-size:14px;color:var(--ink2)}
+.gx-notes h3{font-size:14px;color:var(--ink);margin:0 0 6px;font-weight:650}
+.gx-notes p{margin:0}
+@media (max-width:900px){
+  .gx-head{grid-template-columns:1fr;padding-top:40px}
+  .gx-item{grid-template-columns:3rem minmax(0,1fr)}
+  .gx-spec{grid-column:2;min-height:0}
+  .gx-notes{grid-template-columns:1fr}
+}
+@media (max-width:520px){.gx-item{grid-template-columns:1fr;gap:10px}.gx-spec{grid-column:1}.gx-no{font-size:2rem}.gx-meta{grid-template-columns:4.6rem 1fr}}
+@media (prefers-reduced-motion:reduce){.gx *{transition:none!important;animation:none!important}}
+</style>
+</head>
+<body class="gx">
+<div class="gx-top">
+  <span>陈伊蕊 · 数据分析作品集</span>
+  <span class="gx-ver">PREVIEW v0.3 · 重设计草案</span>
+</div>
+<main class="gx-wrap">
+  <header class="gx-head">
+    <h1>四个项目，<br>四种读法。</h1>
+    <div>
+      <p>这是作品集页面的重设计预览。四个页面各自围绕“审阅者的第一个动作”设计：调查、阅读、权衡、质疑。它们不共用同一套首屏、KPI 卡片和表格骨架。</p>
+      <p>页面正文用英文，面向招聘方。所有数字只来自各项目仓库的 <code>docs/results.json</code>，数据已嵌入页面，离线即可打开，不加载任何外部库、字体或服务。</p>
+    </div>
+  </header>
+
+  <ol class="gx-list">
+    <li class="gx-item">
+      <div class="gx-no" aria-hidden="true"></div>
+      <div>
+        <h2><a href="https://yc4704.github.io/sec-disclosure-explorer/preview.html">SEC Disclosure Desk</a><span class="zh">SEC 披露事件调查台</span></h2>
+        <p>三栏式的分析师工作台：左栏是公司和文件列表，中栏是覆盖全部样本日期的时间线和单个文件的价格窗口，右栏是案卷卡，记录 accession、SEC 原文链接和数据质量标记。默认打开一个具体事件，让审阅者从“点开一份文件”开始调查。</p>
+        <dl class="gx-meta">
+          <dt>交互</dt><dd>选公司和文件、上一份/下一份、可分享的案例链接、同公司其他窗口叠加、y 轴刻度切换</dd>
+          <dt>证据边界</dt><dd>只是原始复权价格的变动，不是异常收益。同一交易日的文件会标为“共享 day 0”，不当作重复文件删除。各窗口不拼成连续价格线；叠加的幽灵线只取同一公司，并注明各自独立归一化。</dd>
+        </dl>
+        <div class="gx-act"><a class="go" href="https://yc4704.github.io/sec-disclosure-explorer/preview.html">打开预览 →</a><a class="src" href="https://github.com/yc4704/sec-disclosure-explorer">源代码仓库 ↗</a></div>
+      </div>
+      <div class="gx-spec sp-sec" aria-hidden="true">
+        <div class="t">SEC DISCLOSURE DESK</div>
+        <div class="r"><span>VWAV</span><span>8-K · 2025-07-22</span><b>O X</b><span>LOGC</span><span>10-Q · 2025-08-07</span><b>S</b></div>
+        <div class="sw"><i style="background:#f5f2e9"></i><i style="background:#14213d"></i><i style="background:#c47f00"></i><i style="background:#a3341c"></i></div>
+        <span class="lbl">PAPER · INK · AMBER</span>
+      </div>
+    </li>
+
+    <li class="gx-item">
+      <div class="gx-no" aria-hidden="true"></div>
+      <div>
+        <h2><a href="https://yc4704.github.io/deepseek-event-study-ml/preview.html">The words came before the shock</a><span class="zh">DeepSeek 事件研究 · 学术长文</span></h2>
+        <p>以长文的形式组织：事件、标签定义、三个竞争假设、证据图、主张账本。核心图是 12 个模型的点 + 须图，可以切换 ROC AUC、Accuracy、F1，也可以按特征集或按均值排序。另有一个两模型对比器，旁注栏写明局限。</p>
+        <dl class="gx-meta">
+          <dt>交互</dt><dd>指标切换、排序切换、任选两个模型对比差值</dd>
+          <dt>证据边界</dt><dd>须线是跨折 ±1 标准差，不是置信区间，也不据此推断显著性。直接标注建模样本 n = 158 / 154，不画没有依据的样本流转图。特征重要性和假设检验结果没有导出，所以页面不展示。</dd>
+        </dl>
+        <div class="gx-act"><a class="go" href="https://yc4704.github.io/deepseek-event-study-ml/preview.html">打开预览 →</a><a class="src" href="https://github.com/yc4704/deepseek-event-study-ml">源代码仓库 ↗</a></div>
+      </div>
+      <div class="gx-spec sp-dk" aria-hidden="true">
+        <div class="k">RESEARCH ESSAY</div>
+        <div class="t">The words came <i>before</i> the shock.</div>
+        <div class="sw"><i style="background:#fbf8f2"></i><i style="background:#181413"></i><i style="background:#b3261e"></i><i style="background:#6e655f"></i></div>
+        <span class="lbl">SERIF · INK · RED</span>
+      </div>
+    </li>
+
+    <li class="gx-item">
+      <div class="gx-no" aria-hidden="true"></div>
+      <div>
+        <h2><a href="https://yc4704.github.io/customer-spend-prediction/preview.html">Holdout lab: boosting vs stacking</a><span class="zh">客户消费预测 · 技术实验室</span></h2>
+        <p>主图是“误差阶梯”：默认按真实比例显示，可以切换到只放大树模型的视图。放大后坐标轴、断轴符号和状态徽标都会明确提示。选中任一模型，可以看到它相对基线和 CatBoost 在四个指标上的差值，以及如实的定性复杂度说明。下方是 stack 的残差直方图和评估协议。</p>
+        <dl class="gx-meta">
+          <dt>交互</dt><dd>指标切换、全刻度/放大切换、模型选择、残差分箱检查、尾部折叠切换</dd>
+          <dt>证据边界</dt><dd>残差只针对 OOF Ridge stack，定义为实际值减预测值，正值表示低估。折叠空尾部时保留尾部的计数和区间。页面不声称任何成本或延迟数据，复杂度只做定性描述。</dd>
+        </dl>
+        <div class="gx-act"><a class="go" href="https://yc4704.github.io/customer-spend-prediction/preview.html">打开预览 →</a><a class="src" href="https://github.com/yc4704/customer-spend-prediction">源代码仓库 ↗</a></div>
+      </div>
+      <div class="gx-spec sp-sp" aria-hidden="true">
+        <div class="t">Most of the gain came from <em>boosting</em>.</div>
+        <span class="b">ZOOMED · AXIS ≠ 0</span>
+        <div class="sw"><i style="background:#fbfcff"></i><i style="background:#0c1233"></i><i style="background:#1d3fd6"></i><i style="background:#c8f03c"></i></div>
+        <span class="lbl">COBALT · LIME · GRID</span>
+      </div>
+    </li>
+
+    <li class="gx-item">
+      <div class="gx-no" aria-hidden="true"></div>
+      <div>
+        <h2><a href="https://yc4704.github.io/employee-attrition-insights/preview.html">Count the people first</a><span class="zh">员工流失 · 假设探索器</span></h2>
+        <p>审阅者从几个常见问题中选一个，比如加班、WLB 编码、IT 与其他部门、部门内再细分，也可以自己组合两组。页面并列展示两组的流失率、实际人数、Wilson 95% 区间和逐条记录的方块图，再联动高亮 40 个底层分组和部门证据。</p>
+        <dl class="gx-meta">
+          <dt>交互</dt><dd>预设问题按钮、自定义 A/B 组（部门、加班、WLB 编码），两组重叠时会提示</dd>
+          <dt>证据边界</dt><dd>WLB 1–4 只是源数据编码，不预设哪一端是好或差。所有问题都是探索性描述，不是显著性检验；单独区间是否重叠也不等于检验。人数直接由分组加总，区间用 Wilson 公式计算并与存储值核对。不做任何个人层面的风险预测。</dd>
+        </dl>
+        <div class="gx-act"><a class="go" href="https://yc4704.github.io/employee-attrition-insights/preview.html">打开预览 →</a><a class="src" href="https://github.com/yc4704/employee-attrition-insights">源代码仓库 ↗</a></div>
+      </div>
+      <div class="gx-spec sp-at" aria-hidden="true">
+        <div class="t">Before trusting a pattern, <span>count the people</span>.</div>
+        <span class="q">Do overtime records differ?</span>
+        <div class="sw"><i style="background:#f7efe3"></i><i style="background:#2d1f18"></i><i style="background:#b4502b"></i><i style="background:#3d5a6c"></i></div>
+        <span class="lbl">CREAM · TERRACOTTA</span>
+      </div>
+    </li>
+  </ol>
+
+  <section class="gx-notes" aria-label="预览说明">
+    <div><h3>数据来源</h3><p>每个页面都嵌入了对应项目 <code>docs/results.json</code> 的副本。四页均保留原始结果数值，SEC 文件链接直接来自原始导出。</p></div>
+    <div><h3>无障碍</h3><p>只使用原生控件，支持键盘操作，焦点清晰可见。每张图都有文字描述，并在“View data”折叠区提供等价数据表。系统开启“减少动态效果”时，动画全部关闭。窄屏适配到 390px。</p></div>
+    <div><h3>状态</h3><p>这是供你反馈的独立预览，原有线上首页保持不变。已完成 Claude 第二轮评审，并修正了核心结果顺序和主要手机布局问题。四个页面均提供顶部中文／English切换，以及可收起的阅读指南。首次打开默认中文，之后记住你的选择。</p></div>
+  </section>
+</main>
+</body>
+</html>
